@@ -1,5 +1,10 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+enum TreatmentType {
+  FLEA
+  TICK
+  WORMER
+}
 
 generator client {
   provider = "prisma-client-js"
@@ -8,4 +13,69 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Dog {
+  id          Int      @id @default(autoincrement())
+  name        String
+  age         Int
+  breed       String
+  gender      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  treatments  Treatment[]
+  vetVisits   VetVisit[]
+  documents   Document[]
+  weighIns    WeighIn[]
+}
+
+model Treatment {
+  id        Int      @id @default(autoincrement())
+  type      TreatmentType
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dog       Dog      @relation(fields: [dogId], references: [id])
+  dogId     Int
+}
+
+model VetVisit {
+  id        Int      @id @default(autoincrement())
+  reason    String
+  diagnosis String
+  notes     String
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dog       Dog      @relation(fields: [dogId], references: [id])
+  dogId     Int
+}
+
+model Document {
+  id        Int      @id @default(autoincrement())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dog       Dog      @relation(fields: [dogId], references: [id])
+  dogId     Int
+}
+
+model WeighIn {
+  id        Int      @id @default(autoincrement())
+  weight    Float
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dog       Dog      @relation(fields: [dogId], references: [id])
+  dogId     Int
 }
