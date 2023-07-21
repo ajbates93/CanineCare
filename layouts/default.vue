@@ -49,7 +49,7 @@ const links = ref<NavigationLink[]>([
               </NuxtLink>
             </li>
           </ul>
-          <a class="bg-[#5874F4] text-white px-4 py-2 rounded-full mt-10 block w-full text-center">Log Activity</a>
+          <NuxtLink to="/log-activity" class="bg-[#5874F4] text-white px-4 py-2 rounded-full mt-10 block w-full text-center">Log Activity</NuxtLink>
         </nav>
       </aside>
       <main role="main" class="p-10">
