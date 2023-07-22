@@ -12,4 +12,10 @@ export default defineNuxtConfig({
     injectPosition: 0,
     viewer: true
   },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in'},
+    head: {
+      title: 'No Waste Here'
+    }
+  }
 })
