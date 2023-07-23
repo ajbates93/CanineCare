@@ -6,7 +6,7 @@ const input = ref<HTMLInputElement>()
 const inputContainer = ref<HTMLInputElement>()
 const searchResults = ref<SearchResult[]>([])
 
-const searchHandler = (e: KeyboardEvent) => {
+const searchShortcutHandler = (e: KeyboardEvent) => {
   if (e.ctrlKey && e.key === 'k') {
     e.preventDefault()
     input.value?.focus()
@@ -29,7 +29,7 @@ watch(search, () => {
   handleSearchInput()
 })
 onMounted(() => {
-  window.addEventListener('keydown', searchHandler)
+  window.addEventListener('keydown', searchShortcutHandler)
 })
 
 </script>

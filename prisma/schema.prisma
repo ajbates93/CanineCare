@@ -36,6 +36,7 @@ model Dog {
   vetVisits   VetVisit[]
   documents   Document[]
   weighIns    WeighIn[]
+  notes       String
 }
 
 model Treatment {

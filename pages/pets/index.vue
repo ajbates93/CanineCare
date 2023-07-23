@@ -4,17 +4,23 @@ const { data: dogs, pending } = await useFetch('/api/dogs')
 <template>
   <div class="container w-full">
     <UiTitleBar title="Your Pets">
-      <button class="flex items-center text-xl bg-green-500 text-white rounded-lg px-3 py-1">
-        <span>Add Pet</span>
-        <Icon name="mdi-plus" size="1.5rem" class="ml-3"></Icon>
-      </button>
+      <NuxtLink to="/pets/add-pet">
+        <UiButtonAdd class="text-lg">Add Pet</UiButtonAdd>
+      </NuxtLink>
     </UiTitleBar>
-    <UiPanel v-if="dogs.length > 0">
-      <div v-for="dog in dogs">
-        <div>{{ dog.name }}</div>
-        <div>{{ dog.breed }}</div>
-      </div>
-    </UiPanel>
+    <div v-if="dogs.length > 0" class="text-lg grid grid-cols-2 gap-10">
+      <UiPanel v-for="dog in dogs" class="mb-0">
+        <div class="font-bold text-2xl text-custPrimary mb-3">{{ dog.name }}</div>
+        <div class="border-b my-3 pb-3 font-bold">{{ dog.breed }}</div>
+        <div class="italic text-gray-600 mb-3">A few things to know about {{ dog.name }}...</div>
+        <div class="mb-3 pb-3 border-b">{{ dog.notes }}</div>
+        <div class="italic text-gray-600 mb-3">Your Actions</div>
+        <div class="actions flex items-center gap-2">
+          <NuxtLink :to="`/pets/${dog.id}`"><UiButtonLink>View</UiButtonLink></NuxtLink>
+          <NuxtLink :to="`/pets/${dog.id}/edit`"><UiButtonLink>Edit</UiButtonLink></NuxtLink>
+        </div>
+      </UiPanel>
+    </div>
     <UiPanel v-else class="bg-gray-100 text-center text-lg">
       <div v-if="pending">Loading...</div>
       <div v-else class="flex flex-col gap-2">

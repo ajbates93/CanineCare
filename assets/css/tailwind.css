@@ -46,3 +46,9 @@ h1, h2, h3, h4, h5, h6 {
 .page-enter-from, .page-leave-to {
   opacity: 0;
 }
+
+@layer components {
+  .form-container {
+    @apply bg-gray-100 border border-gray-200 rounded-xl p-5 my-10;
+  }
+}

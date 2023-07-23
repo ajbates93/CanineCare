@@ -1,4 +1,5 @@
 import { PrismaClient, Dog } from "@prisma/client"
+import type { CreateDog } from '@/types'
 
 const prisma = new PrismaClient()
 
@@ -14,7 +15,7 @@ export const getDog = async (id: number) => {
   return dog
 }
 
-export const createDog = async (data: Dog) => {
+export const createDog = async (data: CreateDog) => {
   const dog = await prisma.dog.create({
     data
   })

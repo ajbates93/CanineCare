@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+const router = useRouter()
 const newPet = reactive({
   name: '',
   age: 0,
@@ -7,10 +8,22 @@ const newPet = reactive({
   gender: '',
   notes: ''
 })
+const loading = ref(false)
+
+const handleAddNewPet = async () => {
+  loading.value = true
+  const { data } = await useFetch('/api/dogs', {
+    method: 'POST',
+    body: JSON.stringify(newPet)
+  })
+  loading.value = false
+  router.push('/pets')
+}
+
 </script>
 
 <template>
-  <div class="bg-gray-100 border border-gray-200 rounded-xl p-5 my-10">
+  <UiFormContainer>
     <div class="mb-5">
       <label for="name" class="w-[160px] inline-block">Name</label>
       <input id="name" class="border border-gray-200 rounded-lg py-1.5 px-2 min-w-[400px]" v-model="newPet.name" placeholder="e.g. Count Sniffula" /> 
@@ -34,5 +47,8 @@ const newPet = reactive({
       <label for="name" class="w-[160px] inline-block">Additional Notes</label>
       <textarea id="name" class="border min-h-[100px] border-gray-200 rounded-lg py-1.5 px-2 min-w-[400px]" v-model="newPet.notes" placeholder="e.g. Lactose intollerant, likes to counter-surf, loves belly scritches..." /> 
     </div>
-  </div>
+    <div class="mb-5">
+      <UiButtonAdd :loading="loading" @click="handleAddNewPet">Add Pet</UiButtonAdd>
+    </div>
+  </UiFormContainer>
 </template>
