@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in'},
     head: {
-      title: 'No Waste Here'
+      title: 'CanineCare'
     }
   }
 })
