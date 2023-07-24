@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
-  edit?: boolean
-}>()
 
 const route = useRoute()
+const edit = useState('edit', () => false)
 
 const { data: pet } = await useFetch(`/api/dogs/${route.params.id}`)
 
@@ -13,23 +11,15 @@ const { data: pet } = await useFetch(`/api/dogs/${route.params.id}`)
   <div>
     <div v-if="pet" class="container w-full text-lg">
       <UiTitleBar :title="pet.name" />
-      <UiFormContainer>
-        <div class="mb-5">
-          {{ pet.name }}
+      <UiPanel class="mb-0">
+        Edit Mode: {{ edit }}
+        <div class="border-b my-3 pb-3 font-bold">{{ pet.breed }}</div>
+        <div class="italic text-gray-600 mb-3">A few things to know about {{ pet.name }}...</div>
+        <div class="mb-3 pb-3 border-b">{{ pet.notes }}</div>
+        <div class="actions flex items-center gap-2">
+          <UiButtonEdit @click="edit = !edit">Edit</UiButtonEdit>
         </div>
-        <div class="mb-5">
-          {{ pet.age }}
-        </div>
-        <div class="mb-5">
-          {{ pet.breed }}
-        </div>
-        <div class="mb-5">
-          {{ pet.gender}}
-        </div>
-        <div class="mb-5">
-          {{ pet.notes }}
-        </div>
-      </UiFormContainer>
+      </UiPanel>
     </div>
   </div>
 </template>
