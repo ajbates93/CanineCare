@@ -17,5 +17,9 @@ export default defineNuxtConfig({
     head: {
       title: 'CanineCare'
     }
+  },
+  sourcemap: {
+    server: true,
+    client: true
   }
 })

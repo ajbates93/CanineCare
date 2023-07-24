@@ -8,7 +8,7 @@ const { data: dogs, pending } = await useFetch('/api/dogs')
         <UiButtonAdd class="text-lg">Add Pet</UiButtonAdd>
       </NuxtLink>
     </UiTitleBar>
-    <div v-if="dogs.length > 0" class="text-lg grid grid-cols-2 gap-10">
+    <div v-if="dogs && dogs.length > 0" class="text-lg grid grid-cols-2 gap-10">
       <UiPanel v-for="dog in dogs" class="mb-0">
         <div class="font-bold text-2xl text-custPrimary mb-3">{{ dog.name }}</div>
         <div class="border-b my-3 pb-3 font-bold">{{ dog.breed }}</div>

@@ -5,11 +5,3 @@ export type SearchResult = {
   age: number
   breed: string
 }
-
-export type CreateDog = {
-  name: string
-  age: number
-  breed: string
-  gender: string
-  notes: string
-}

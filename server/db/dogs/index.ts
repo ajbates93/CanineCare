@@ -1,5 +1,5 @@
 import { PrismaClient, Dog } from "@prisma/client"
-import type { CreateDog } from '@/types'
+import type { CreateDog } from '@/types/dogs'
 
 const prisma = new PrismaClient()
 
