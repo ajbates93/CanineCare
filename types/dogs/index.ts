@@ -5,3 +5,9 @@ export type CreateDog = {
   gender: string
   notes: string
 }
+
+export type CreateTreatment = {
+  treatmentType: string,
+  date: Date,
+  dog: number
+}
