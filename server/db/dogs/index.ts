@@ -8,6 +8,18 @@ export const getDogs = async () => {
   return dogs
 }
 
+export const getDogsBySearch = async (search: string) => {
+  const dogs = await prisma.dog.findMany({
+    where: {
+      name: { contains: search } 
+    }, 
+    take: 5
+  })
+  console.log('API', dogs)
+
+  return dogs
+}
+
 export const getDog = async (id: number) => {
   const dog = await prisma.dog.findUnique({
     where: { id }
