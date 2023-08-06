@@ -7,7 +7,8 @@ enum TreatmentType {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -25,27 +26,27 @@ model User {
 }
 
 model Dog {
-  id          Int      @id @default(autoincrement())
-  name        String
-  age         Int
-  breed       String
-  gender      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  treatments  Treatment[]
-  vetVisits   VetVisit[]
-  documents   Document[]
-  weighIns    WeighIn[]
-  notes       String
+  id         Int         @id @default(autoincrement())
+  name       String
+  age        Int
+  breed      String
+  gender     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  treatments Treatment[]
+  vetVisits  VetVisit[]
+  documents  Document[]
+  weighIns   WeighIn[]
+  notes      String
 }
 
 model Treatment {
-  id        Int      @id @default(autoincrement())
+  id        Int           @id @default(autoincrement())
   type      TreatmentType
   date      DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  dog       Dog      @relation(fields: [dogId], references: [id])
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  dog       Dog           @relation(fields: [dogId], references: [id])
   dogId     Int
 }
 

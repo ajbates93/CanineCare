@@ -1,8 +1,9 @@
 import { getDogsBySearch } from '~/server/db/dogs'
 
 export default defineEventHandler(async (event) => {
-  // const { search } = getQuery(event)
+  const { name } = getQuery(event)
 
-  // const results = await getDogsBySearch(search?.toString() || '') 
-  // return results
+  console.log(name)
+  const results = await getDogsBySearch(name?.toString() || '')
+  return results
 })

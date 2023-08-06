@@ -25,13 +25,13 @@ const handleSearchInput = async () => {
     searchResults.value = []
     return
   }
-  // const { data } = await useSearch(search.value)
-  // if (data.value) {
-  //   const d = data.value as any[]
-  //   searchResults.value = d.map(x => {
-  //     return x as SearchResult
-  //   })
-  // }
+  const { data } = await useSearch(search.value)
+  if (data.value) {
+    const d = data.value as any[]
+    searchResults.value = d.map(x => {
+      return x as SearchResult
+    })
+  }
 }
 
 watch(search, () => {

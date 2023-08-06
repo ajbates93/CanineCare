@@ -1,19 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [ 
+  modules: [
     '@nuxtjs/tailwindcss',
-    'nuxt-icon' 
+    'nuxt-icon'
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.ts',
-    exposeConfig: true, 
+    exposeConfig: true,
     injectPosition: 0,
     viewer: true
   },
   app: {
-    pageTransition: { name: 'page', mode: 'out-in'},
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       title: 'CanineCare'
     }
@@ -21,5 +21,8 @@ export default defineNuxtConfig({
   sourcemap: {
     server: true,
     client: true
+  },
+  experimental: {
+    componentIslands: true
   }
 })

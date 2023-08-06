@@ -11,8 +11,8 @@ export const getDogs = async () => {
 export const getDogsBySearch = async (search: string) => {
   const dogs = await prisma.dog.findMany({
     where: {
-      name: { contains: search } 
-    }, 
+      name: { contains: search, mode: 'insensitive' }
+    },
     take: 5
   })
 
