@@ -1,11 +1,9 @@
 <script setup lang="ts">
-
+import type { Dog } from '~/types/dogs'
 const route = useRoute()
 const edit = useState('edit', () => false)
 const showAddTreatment = useState('showAddTreatment', () => false)
-
-const { data: pet } = await useFetch(`/api/dogs/${route.params.id}`)
-
+const { data: pet } = await useFetch<Dog>(`/api/dogs/${route.params.id}`)
 </script>
 
 <template>

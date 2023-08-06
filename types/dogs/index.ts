@@ -1,3 +1,17 @@
+export type Dog = {
+  id: number
+  name: string
+  age: number
+  breed: string
+  gender: string
+  createdAt: Date
+  updatedAt: Date
+  treatments: []
+  vetVisits: []
+  documents: []
+  weighIns: []
+  notes: string
+}
 export type CreateDog = {
   name: string
   age: number

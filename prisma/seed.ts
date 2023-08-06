@@ -20,7 +20,6 @@ const main = async () => {
       password: 'Abcd1234!'
     }
   })
-  console.log({ alex, vicky })
 }
 main()
   .then(async () => {

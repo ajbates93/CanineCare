@@ -15,7 +15,6 @@ export const getDogsBySearch = async (search: string) => {
     }, 
     take: 5
   })
-  console.log('API', dogs)
 
   return dogs
 }
