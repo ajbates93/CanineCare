@@ -8,7 +8,6 @@ const searchResults = ref<SearchResult[]>([])
 const activeSearchResultIndex = ref<number>(0)
 
 const searchShortcutHandler = (e: KeyboardEvent) => {
-  console.log(e)
   if (e.ctrlKey && e.key === 'k') {
     e.preventDefault()
     input.value?.focus()
