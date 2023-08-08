@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useSearch } from '@/composables/search/useSearch'
 import type { SearchResult } from '@/types'
+const { searchDogs } = useSearch()
+const router = useRouter()
+
 const search = ref('')
 const input = ref<HTMLInputElement>()
 const inputContainer = ref<HTMLInputElement>()
@@ -31,6 +34,14 @@ const searchShortcutHandler = (e: KeyboardEvent) => {
     if (activeSearchResultIndex.value < 0)
       activeSearchResultIndex.value = Math.min(5, searchResults.value.length - 1) 
   }
+  if (e.key === "Enter") {
+    e.preventDefault()
+    const id = searchResults.value.at(activeSearchResultIndex.value)?.id
+    if (id) {
+      router.push(`/pets/${id}`)
+      search.value = ''
+    }
+  }
 }
 
 const handleSearchInput = async () => {
@@ -38,7 +49,7 @@ const handleSearchInput = async () => {
     searchResults.value = []
     return
   }
-  const { data } = await useSearch(search.value)
+  const { data } = await searchDogs(search.value)
   if (data.value) {
     const d = data.value as any[]
     searchResults.value = d.map(x => {
