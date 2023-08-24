@@ -1,8 +1,8 @@
-import { CreateTreatment } from "types/treatments"
+import { CreateRecurringTreatment } from "types/treatments"
 
 export const useTreatments = () => {
-  const addTreatmentForDog = async (treatment: CreateTreatment) => {
-    const { data, error, status } = await useFetch('/api/treatments', {
+  const addRecurringTreatmentForDog = async (treatment: CreateRecurringTreatment) => {
+    const { data, error, status } = await useFetch('/api/treatments?type=recurring', {
       method: 'POST',
       body: JSON.stringify({
         ...treatment
@@ -11,5 +11,5 @@ export const useTreatments = () => {
     return { data, error, status }
   }
 
-  return { addTreatmentForDog }
+  return { addRecurringTreatmentForDog }
 }

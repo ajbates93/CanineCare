@@ -1,11 +1,14 @@
 import { createTreatmentForDog } from '~/server/db/treatments'
-import type { CreateTreatment } from '~/types/dogs'
+import type { CreateRecurringTreatment } from '~/types/treatments'
 
 export default defineEventHandler(async (event) => {
-  const { treatmentType, date, dog } = await readBody(event)
-  const data: CreateTreatment = {
-    treatmentType, date, dog
+  const { type } = getQuery(event)
+  if (type) {
+    const { name, dogId, interval, intervalValue, dateAdministered } = await readBody(event)
+    const data: CreateRecurringTreatment = {
+      name, dogId, interval, intervalValue, dateAdministered
+    }
+    console.log('from API: ', data)
+    // return await createTreatmentForDog(data)
   }
-  console.log('from API: ', data)
-  // return await createTreatmentForDog(data)
 })

@@ -1,13 +1,8 @@
 import { PrismaClient } from '@prisma/client'
-import { CreateTreatment } from '~/types/dogs'
+import { CreateRecurringTreatment } from '~/types/treatments'
 
 const prisma = new PrismaClient()
 
-export const createTreatmentForDog = async (data: CreateTreatment) => {
-  const createTreatment = {
-    type: data.treatmentType,
-    date: data.date,
-    dog: data.dog,
-  }
-  // const treatment = await prisma.treatment.create(createTreatment)
+export const createRecurringTreatmentForDog = async (data: CreateRecurringTreatment) => {
+  const treatment = await prisma.treatment.create(data)
 }

@@ -15,7 +15,7 @@ const { data: pet } = await useFetch<Dog>(`/api/dogs/${route.params.id}`)
         <div class="border-b my-3 pb-3 font-bold">{{ pet.breed }}</div>
         <div class="italic text-gray-600 mb-3">A few things to know about {{ pet.name }}...</div>
         <div class="mb-3 pb-3 border-b">{{ pet.notes }}</div>
-        <PetsAddTreatment :id="pet.id" v-if="showAddTreatment" />
+        <PetsAddTreatmentRecurring :id="pet.id" v-if="showAddTreatment" />
         <div class="actions flex items-center gap-2">
           <UiButtonEdit @click="edit = !edit">Edit</UiButtonEdit>
           <UiButtonEdit @click="showAddTreatment = !showAddTreatment">Add Treatment</UiButtonEdit>

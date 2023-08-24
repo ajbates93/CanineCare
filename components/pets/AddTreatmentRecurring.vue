@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { CreateTreatment } from '~/types/treatments'
+import { CreateRecurringTreatment } from '~/types/treatments'
 import { useTreatments } from '@/composables/treatments/useTreatments'
 
 const router = useRouter()
-const { addTreatmentForDog } = useTreatments()
+const { addRecurringTreatmentForDog } = useTreatments()
 const { id } = defineProps<{
   id: number
 }>()
 
 const loading = ref(false)
-const newTreatment = reactive<CreateTreatment>({
+const newTreatment = reactive<CreateRecurringTreatment>({
   name: '',
   dogId: id,
   interval: 0,
@@ -19,7 +19,7 @@ const newTreatment = reactive<CreateTreatment>({
 
 const handleAddNewTreatmentClick = async () => {
   loading.value = true
-  const { data, error, status } = await addTreatmentForDog(newTreatment)  
+  const { data, error, status } = await addRecurringTreatmentForDog(newTreatment)  
   loading.value = false
 }
 </script>

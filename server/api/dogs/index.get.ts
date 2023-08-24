@@ -1,5 +1,8 @@
-import { getDogs } from '~/server/db/dogs'
+import { getDogs, getDogsBySearch } from '~/server/db/dogs'
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const { name } = getQuery(event)
+  if (name)
+    return await getDogsBySearch(name.toString())
   return await getDogs()
 })

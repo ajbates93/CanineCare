@@ -1,4 +1,4 @@
-export type CreateTreatment = {
+export type CreateRecurringTreatment = {
   name: string
   dogId: number
   interval: number,
